@@ -13,7 +13,7 @@ export class UsersService {
     private idCounter = 1;
 
     signup(username: string, password: string) {
-        const userExists = this.users.find(u => u.username === username);
+        const userExists = this.users.find(user => user.username === username);
         if (userExists) {
             return { success: false, message: '이미 존재하는 사용자입니다.'}
         }
@@ -23,7 +23,7 @@ export class UsersService {
     }
 
     login(username: string, password: string) {
-        const user = this.users.find(u => u.username === username && u.password === password);
+        const user = this.users.find(user => user.username === username && user.password === password);
         if (!user) { 
             return { success: false, message: '로그인 실패' }
         };
