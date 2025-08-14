@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import type { Board, BoardStatus } from './boards.model'
+import { CreateBoardDto } from './dto/create-board.dto';
 
 @Controller('boards')
 export class BoardsController {
@@ -18,11 +19,8 @@ export class BoardsController {
     }
 
     @Post()
-    createBoard(
-        @Body('title') title: string,
-        @Body('description') description: string
-    ): Board {
-        return this.boardsService.createBoard(title, description);
+    createBoard(@Body() createBoardDto: CreateBoardDto): Board {
+        return this.boardsService.createBoard(createBoardDto);
     }
 
     @Patch(':id/status')
